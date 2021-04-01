@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>microservice-ddd-onion</artifactId>
+        <groupId>com.eainde</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <description>
+        This is a jar module. This module should have domian model classes.
+        These classes represent the business domain.
+        Donot put response and request transfer objects, if you have to add any.
+    </description>
+
+    <groupId>com.eainde.ddd</groupId>
+    <artifactId>domian</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <immutables.version>2.7.5</immutables.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+
+</project>
