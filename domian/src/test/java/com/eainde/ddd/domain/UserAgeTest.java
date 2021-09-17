@@ -1,10 +1,9 @@
 package com.eainde.ddd.domain;
 
-import com.eainde.ddd.constants.DomainConstants;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class UserAgeTest {
 
@@ -22,6 +21,6 @@ class UserAgeTest {
             () -> {
               ImmutableUserAge.builder().value(0).build();
             });
-    assertTrue(thrown.getMessage().contains(DomainConstants.USER_ID_VALIDATION_FAILED));
+    assertTrue(thrown.getMessage().contains("user age cannot be 0"));
   }
 }
