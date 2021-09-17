@@ -8,6 +8,8 @@ import com.eainde.ddd.domain.UserId;
 import com.eainde.ddd.domain.UserName;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import java.util.Optional;
+
 @Value.Immutable
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public interface UserAggregate {
@@ -15,7 +17,7 @@ public interface UserAggregate {
 
   UserName name();
 
-  Country country();
+  Optional<Country> country();
 
   UserAge age();
 }
