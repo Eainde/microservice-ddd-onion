@@ -9,9 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>
-        This is a jar module. This module should have domian model classes.
+        This is a jar module. This module should have domain model classes.
         These classes represent the business domain.
-        Donot put response and request transfer objects, if you have to add any.
+        Do not put response and request transfer objects, if you have to add any.
     </description>
 
     <groupId>com.eainde.ddd</groupId>
