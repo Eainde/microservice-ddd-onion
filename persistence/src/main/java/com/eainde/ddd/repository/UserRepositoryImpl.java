@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,16 +39,17 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
-  public UserAggregate getUserById(long id) {
+  public UserAggregate getUserById(int id) {
     User user =
         entityManager
-            .createQuery("SELECT u FROM USER u WHERE u.userId=:id", User.class)
+            .createQuery("SELECT u FROM User u WHERE u.userId=:id", User.class)
             .setParameter("id", id)
             .getSingleResult();
     return mapper.mapToDomain(user);
   }
 
   @Override
+  @Transactional
   public boolean add(UserAggregate user) {
     try {
       entityManager.persist(mapper.mapToEntity(user));
@@ -59,6 +61,7 @@ public class UserRepositoryImpl implements UserRepository {
   }
 
   @Override
+  @Transactional
   public UserAggregate update(UserAggregate user) {
     return mapper.mapToDomain(entityManager.merge(mapper.mapToEntity(user)));
   }

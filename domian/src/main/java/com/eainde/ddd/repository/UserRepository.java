@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserRepository {
   List<UserAggregate> findAll();
 
-  UserAggregate getUserById(long id);
+  UserAggregate getUserById(int id);
 
   boolean add(UserAggregate user);
 
