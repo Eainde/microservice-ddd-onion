@@ -1,12 +1,9 @@
 package com.eainde.ddd.domain;
 
+import com.eainde.ddd.Wrapped;
+import com.google.common.base.Preconditions;
+
 import org.immutables.value.Value;
-
-import com.eainde.ddd.Wrapped;
-import com.google.common.base.Preconditions;
-
-import com.eainde.ddd.Wrapped;
-import com.google.common.base.Preconditions;
 
 @Value.Immutable
 @Wrapped

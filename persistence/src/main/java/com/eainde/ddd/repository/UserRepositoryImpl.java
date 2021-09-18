@@ -3,15 +3,16 @@ package com.eainde.ddd.repository;
 import com.eainde.ddd.Mapper;
 import com.eainde.ddd.aggregate.UserAggregate;
 import com.eainde.ddd.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.List;
 
-import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepositoryImpl implements UserRepository {
@@ -28,7 +29,10 @@ public class UserRepositoryImpl implements UserRepository {
   public List<UserAggregate> findAll() {
     final var criteria = entityManager.getCriteriaBuilder().createQuery(User.class);
     criteria.select(criteria.from(User.class));
-    return entityManager.createQuery(criteria).getResultList().stream()
+    return entityManager
+        .createQuery(criteria)
+        .getResultList()
+        .stream()
         .map(mapper::mapToDomain)
         .collect(Collectors.toList());
   }
