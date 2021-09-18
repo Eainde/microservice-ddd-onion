@@ -8,7 +8,7 @@ import com.eainde.ddd.domain.*;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("userMapperDto")
 public class UserMapper {
 
   public UserAggregate mapToDomain(UserDto dto) {

@@ -20,7 +20,7 @@ public class UserService {
   }
 
   public UserAggregate getUserById(long id) {
-    return repository.getUserById(id);
+    return repository.getUserById((int) id);
   }
 
   public boolean add(UserAggregate user) {
