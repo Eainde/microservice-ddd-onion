@@ -6,7 +6,7 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_PASSWORD: secret
+      POSTGRES_PASSWORD: admin
       POSTGRES_USER: postgres
     volumes:
       - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
