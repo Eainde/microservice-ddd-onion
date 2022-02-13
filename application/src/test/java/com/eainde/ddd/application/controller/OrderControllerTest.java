@@ -2,6 +2,7 @@ package com.eainde.ddd.application.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,13 +20,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -59,19 +60,20 @@ class OrderControllerTest {
   void findAll() throws Exception {
     when(service.getOrders()).thenReturn(orderAggregateList);
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/order/"))
+        .perform(get("/order/"))
         .andExpect(status().isOk())
         .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
         .andDo(MockMvcResultHandlers.print());
   }
 
-  @Test
-  void getOrderById() throws Exception {
-    when(service.getOrder(1)).thenReturn(orderAggregate);
+  @org.junit.jupiter.params.ParameterizedTest
+  @ValueSource(ints = 1)
+  void getOrderById(int id) throws Exception {
+    when(service.getOrder(id)).thenReturn(orderAggregate);
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/order/1"))
+        .perform(get("/order/{id}", id))
         .andExpect(status().isOk())
-        //    .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE))
+        // .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON_VALUE));
         .andDo(MockMvcResultHandlers.print());
   }
 }
