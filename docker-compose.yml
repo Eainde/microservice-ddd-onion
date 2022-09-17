@@ -2,11 +2,17 @@
 version: '2'
 services:
   postgres:
-    image: postgres
+    image: postgres:latest
     ports:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: postgres
     volumes:
-      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - /config/init.sql:/docker-entrypoint-initdb.d/init.sql
+  microservice-ddd-onion:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - 8443:8443
